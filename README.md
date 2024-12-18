@@ -34,8 +34,8 @@ This repository contains a simple Discord bot that leverages OpenAI's API to pro
 ### Installation
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/discord-chat-bot.git
-   cd discord-chat-bot
+   git clone https://github.com/1337haxx0r/DiscordGPT.git
+   cd DiscordGPT
    ```
 
 2. Create a virtual environment:
@@ -47,6 +47,7 @@ This repository contains a simple Discord bot that leverages OpenAI's API to pro
 3. Install dependencies:
    ```bash
    pip install openai
+   pip install discord
    pip install discord.py
    ```
 
