@@ -1,7 +1,11 @@
+import os
+
 from openai import OpenAI
+from dotenv import load_dotenv
+load_dotenv()
 
 # Set your OpenAI API key
-openai_api_key = ("")
+api_key = os.getenv('OPENAI_TOKEN')
 
 
 conversation_history = [
@@ -13,7 +17,7 @@ conversation_history = [
 
 def generate_response(prompt):
     client = OpenAI(
-        api_key=openai_api_key
+        api_key=api_key
     )
 
     chat_completion = client.chat.completions.create(
@@ -28,7 +32,15 @@ def generate_response(prompt):
             }
         ],
         model="gpt-4o",
+        stream=True
     )
 
-    return chat_completion.choices[0].message.content.strip()
+    # return chat_completion.choices[0].message.content.strip()
+
+    for chunk in chat_completion:
+        content = chunk.choices[0].delta.content  # Direct access to content
+        if content is not None:  # Filter out None values
+            yield content
+
+
 
